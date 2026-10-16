@@ -9,9 +9,9 @@ from ..value_objects import BatteryLevel, ScooterId
 class ScooterStatus(Enum):
     """Статус самоката."""
 
-    AVAILABLE = "available"      # свободен
-    IN_USE = "in_use"            # арендован
-    MAINTENANCE = "maintenance"  # на обслуживании
+    AVAILABLE = "available"     
+    IN_USE = "in_use"            
+    MAINTENANCE = "maintenance"  
 
 
 @dataclass
@@ -28,8 +28,6 @@ class Scooter:
     minimum_battery: int = 20  # минимальный порог заряда (в %)
     _status: ScooterStatus = field(default=ScooterStatus.AVAILABLE, repr=False)
 
-    # ---------- публичное чтение ----------
-
     @property
     def status(self) -> ScooterStatus:
         return self._status
@@ -38,7 +36,6 @@ class Scooter:
     def is_available(self) -> bool:
         return self._status is ScooterStatus.AVAILABLE
 
-    # ---------- поведение ----------
 
     def issue(self) -> None:
         """Выдать самокат в аренду.
